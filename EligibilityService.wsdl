@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- begin_generated_IBM_copyright_prolog -->
+
+<!-- Licensed Materials - Property of IBM -->
+<!-- 5724-N72 -->
+<!-- (c) Copyright IBM Corp. 2006 All Rights Reserved -->
+<!-- US Government Users Restricted Rights - Use, duplication or -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with -->
+<!-- IBM Corp. -->
+
+<!-- end_generated_IBM_copyright_prolog -->
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:apachesoap="http://xml.apache.org/xml-soap" 
+  xmlns:intf="http://jkhle.com/Eligibility_Service" 
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://jkhle.com/Eligibility_Service">
+
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://jkhle.com/Eligibility_Service">
+  			<xsd:complexType name="TrueOrFalseBO">
+    				<xsd:sequence>
+      				<xsd:element minOccurs="0" name="value" type="xsd:boolean"/>
+    				</xsd:sequence>
+  			</xsd:complexType>
+   			<xsd:complexType name="InsurancePolicyBO">
+    				<xsd:sequence>
+      				<xsd:element minOccurs="0" name="coverValue" type="xsd:string"/>
+     				      <xsd:element minOccurs="0" name="renewalDate" type="xsd:string"/>
+      				<xsd:element minOccurs="0" name="customer" type="xsd:string"/>
+   				</xsd:sequence>
+  			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="validationResponse">
+		<wsdl:part name="validationReturn" type="intf:TrueOrFalseBO"/>
+	</wsdl:message>
+
+	<wsdl:message name="validationRequest">
+		<wsdl:part name="policy" type="intf:InsurancePolicyBO"/>
+	</wsdl:message>
+
+	<wsdl:portType name="Eligibility_Service">
+		<wsdl:operation name="validate">
+			<wsdl:input message="intf:validationRequest" name="validationRequest"/>
+			<wsdl:output message="intf:validationResponse" name="validationResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+   <wsdl:binding name="Eligibility_Service_SOAPBinding" type="intf:Eligibility_Service">
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="validate">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="validationRequest">
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://jkhle.com" use="encoded"/>
+         </wsdl:input>
+         <wsdl:output name="validationResponse">
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://jkhle.com" use="encoded"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+
+	<wsdl:service name="EligibilityService">
+		<wsdl:port binding="intf:Eligibility_Service_SOAPBinding" name="EligibilityPort">
+			<wsdlsoap:address location="http://www.jkhle.com/jkhle/services/Eligibility"/>
+		</wsdl:port>
+	</wsdl:service>  
+
+
+</wsdl:definitions>
