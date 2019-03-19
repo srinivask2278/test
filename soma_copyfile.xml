@@ -2,7 +2,7 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
 <soapenv:Body>
 <dp:request xmlns:dp="http://www.datapower.com/schemas/management">
-<dp:set-file name="local:///GitTestfile">
+<dp:set-file name="local:///KanchanTestfile">
 abcd
 </dp:set-file>
 </dp:request>
